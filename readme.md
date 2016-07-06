@@ -125,6 +125,10 @@ sqlite> SELECT * FROM items WHERE id = (SELECT item_id FROM orders ORDER BY quan
 
 66|Gorgeous Granite Car|Tools & Computers|Enhanced encompassing parallelism|2768
 
+
+SELECT title, SUM(price * quantity) FROM items JOIN orders ON orders.item_id = items.id GROUP BY items.id ORDER BY SUM(price * quantity) DESC LIMIT 5;
+# top 5 most-sold items
+
 # GROSSED THE MOST MONEY:
 
 
