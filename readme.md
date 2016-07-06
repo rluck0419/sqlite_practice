@@ -98,8 +98,9 @@ sqlite> SELECT SUM( price * quantity )
    ...> FROM items
    ...> INNER JOIN orders
    ...> ON items.id = orders.item_id;
+   ...> WHERE category LIKE '%books%'
    
-10045128
+1081352
 ```
 
 9) Simulate buying an item by inserting a User for yourself and an Order for that User.
