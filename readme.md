@@ -2,6 +2,7 @@
 
 ```
 sqlite> SELECT COUNT(*) FROM users;
+
 50
 ```
 
@@ -9,6 +10,7 @@ sqlite> SELECT COUNT(*) FROM users;
 
 ```
 sqlite> SELECT * FROM items ORDER BY price DESC LIMIT 5;
+
 25|Small Cotton Gloves|Automotive, Shoes & Beauty|Multi-layered modular service-desk|9984
 83|Small Wooden Computer|Health|Re-engineered fault-tolerant adapter|9859
 100|Awesome Granite Pants|Toys & Books|Upgradable 24/7 access|9790
@@ -22,6 +24,7 @@ This is the cheapest item whose category contains 'book':
 
 ```
 sqlite> SELECT * FROM items WHERE category LIKE '%book%' ORDER BY price ASC LIMIT 1;
+
 76|Ergonomic Granite Chair|Books|De-engineered bi-directional portal|1496
 ```
 
@@ -35,6 +38,7 @@ This is the cheapest item whose category is exactly 'books':
 
 ```
 sqlite> SELECT * FROM items WHERE category LIKE 'books' ORDER BY price ASC LIMIT 1;
+
 76|Ergonomic Granite Chair|Books|De-engineered bi-directional portal|1496
 ```
 
@@ -44,6 +48,7 @@ Corrine Little lives here:
 
 ```
 sqlite> SELECT * FROM users WHERE id = (SELECT user_id FROM addresses WHERE street = '6439 Zetta Hills');
+
 40|Corrine|Little|rubie_kovacek@grimes.net
 ```
 
@@ -51,6 +56,7 @@ And Corrine has two addresses:
 
 ```
 sqlite> SELECT * FROM addresses WHERE user_id = (SELECT user_id FROM addresses WHERE street = '6439 Zetta Hills');
+
 43|40|6439 Zetta Hills|Willmouth|WY|15029
 44|40|54369 Wolff Forges|Lake Bryon|CA|31587
 ```
@@ -71,6 +77,7 @@ Cost (sum) of each distinct (one of each) tool:
 
 ```
 sqlite> SELECT DISTINCT SUM(price) FROM items;
+
 467488
 ```
 
@@ -79,6 +86,7 @@ Sum of quantities from order table:
 
 ```
 sqlite> SELECT SUM(quantity) FROM orders;
+
 2125
 ```
 
@@ -90,6 +98,7 @@ sqlite> SELECT SUM( price * quantity )
    ...> FROM items
    ...> INNER JOIN orders
    ...> ON items.id = orders.item_id;
+   
 10045128
 ```
 
@@ -97,7 +106,36 @@ sqlite> SELECT SUM( price * quantity )
 
 
 ```
-sqlite> INSERT INTO users (first_name, last_name, email) VALUES ('Rob', 'Luckfield', 'rluck@email.mail');
+sqlite> INSERT INTO users (first_name, last_name, email) VALUES ('Bub', 'Von Bubbles' 'bub@von.bubbles');
 
 sqlite> INSERT INTO orders (user_id, item_id, quantity, created_at) VALUES (51, 24, 8, CURRENT_TIMESTAMP);
+```
+
+--------ADVENTURER MODE-------if you cross this line you're an adventurer---------------------
+10) What item was ordered most often? Grossed the most money?
+
+```
+# MOST OFTEN ORDERED:
+# select the item based on id number from items via orders
+# sorting orders in this way only displays the first item
+# set LIMIT to 39 for all of the most-ordered items
+
+sqlite> SELECT * FROM items WHERE id = (SELECT item_id FROM orders ORDER BY quantity DESC LIMIT 1);
+
+66|Gorgeous Granite Car|Tools & Computers|Enhanced encompassing parallelism|2768
+
+# GROSSED THE MOST MONEY:
+
+
+```
+
+11) What user spent the most?
+
+```
+
+```
+
+12) What were the top 3 highest grossing categories?
+
+```
 ```
