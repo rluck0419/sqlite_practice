@@ -76,9 +76,9 @@ sqlite> SELECT * FROM addresses WHERE id = (SELECT id FROM users WHERE first_nam
 Cost (sum) of each distinct (one of each) tool:
 
 ```
-sqlite> SELECT DISTINCT SUM(price) FROM items;
+sqlite> SELECT DISTINCT SUM(price) FROM items WHERE category = 'Tools';
 
-467488
+4783
 ```
 
 7) How many total items did we sell?
